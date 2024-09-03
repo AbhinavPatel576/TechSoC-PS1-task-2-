@@ -372,9 +372,15 @@ void adminRegister() {
   else
     cout << "WRONG PASSWORD \nTry again with the correct password" << endl;
   }
-  else
+  else {
+    if(passcheckAdmin(password , name, instituteID)){
     cout << "You have already registered" << endl
          << "Please don't register again." << endl;
+         admin();
+       }
+    else
+      cout<< "WRONG PASSWORD \nTry again with correct password" << endl;
+    }
 }
 bool passcheckAdmin(string password, string name,string instituteID) {
   string verify;
@@ -658,7 +664,8 @@ void student() {
   {
     string oldPass, newPass;
     cout << "Enter your current password" << endl;
-    cin >> oldPass;
+    cin.ignore();
+    getline(cin, oldPass);
     cout << "Enter your new password" << endl;
     cin.ignore();
     getline(cin, newPass);
